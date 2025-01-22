@@ -3376,8 +3376,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8796658970682121589, guid: 4a9a40882d57db045834461448fdbbbc, type: 3}
+      propertyPath: offset.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8796658970682121589, guid: 4a9a40882d57db045834461448fdbbbc, type: 3}
       propertyPath: offset.z
-      value: -0.9
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8796658970682121589, guid: 4a9a40882d57db045834461448fdbbbc, type: 3}
       propertyPath: cameraOffsetObj
