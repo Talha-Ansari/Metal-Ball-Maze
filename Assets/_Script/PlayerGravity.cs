@@ -26,8 +26,8 @@ public class PlayerGravity : MonoBehaviour
 
     void SetOffsetObjPosition()
     {
-
-        cameraOffsetObj.transform.localPosition = offset + new Vector3(0, 0, transform.localPosition.z);
+        if (cameraOffsetObj != null)
+            cameraOffsetObj.transform.localPosition = offset + new Vector3(0, 0, transform.localPosition.z);
     }
 
 
