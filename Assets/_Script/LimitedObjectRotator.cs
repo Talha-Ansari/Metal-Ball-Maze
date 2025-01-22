@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class LimitedObjectRotator : MonoBehaviour
 {
     [Header("Rotation Settings")]
@@ -22,8 +22,15 @@ public class LimitedObjectRotator : MonoBehaviour
 
     private bool gyroEnabled = false;
     [SerializeField] Transform verticalOBj;
+
+    [SerializeField] PlayerControlar playerInput;
+    private void Awake()
+    {
+        playerInput = new PlayerControlar();
+    }
     void Start()
     {
+        playerInput.Player.Enable();
         // Initialize the current rotation to the object's starting rotation
         currentRotation = transform.localEulerAngles;
 
@@ -39,27 +46,37 @@ public class LimitedObjectRotator : MonoBehaviour
             Debug.LogWarning("Gyroscope not supported on this device.");
         }
     }
-
     void Update()
     {
         Vector2 input = Vector2.zero;
 
+
         // Input-based rotation
         if (rotateOnInput)
         {
-            input.x = Input.GetAxis("Vertical"); // X-axis rotation from Vertical input (W/S or Up/Down arrows)
-            input.y = Input.GetAxis("Horizontal"); // Y-axis rotation from Horizontal input (A/D or Left/Right arrows)
+            // input.x = Input.GetAxis("Vertical"); // X-axis rotation from Vertical input (W/S or Up/Down arrows)
+            // input.y = Input.GetAxis("Horizontal"); // Y-axis rotation from Horizontal input (A/D or Left/Right arrows)
             if (inverseDirection)
             {
+                input = playerInput.Player.Move.ReadValue<Vector2>();
                 input *= -1;
             }
+            float temp = input.x;
+            input.x = input.y;
+            input.y = temp;
         }
 
         // Gyroscopic rotation
         if (useGyro && gyroEnabled)
         {
             input = Vector2.zero;
-            Vector3 gyroInput = Input.gyro.rotationRateUnbiased; // Get the unbiased gyro rotation
+            // Vector3 gyroInput = Input.gyro.rotationRateUnbiased; // Get the unbiased gyro rotation
+            Vector3 gyroInput = playerInput.Player.MoveGyro.ReadValue<Vector3>(); // Get the unbiased gyro rotation
+            Debug.Log(gyroInput);
+            gyroInput.z = gyroInput.y;
+            gyroInput.y = gyroInput.x;
+            gyroInput.x = gyroInput.z;
+
             input.x += gyroInput.x * gyroSensitivity * (invertGyroX ? -1 : 1); // Add gyro X-axis input
             input.y += gyroInput.y * gyroSensitivity * (invertGyroY ? -1 : 1); // Add gyro Y-axis input
         }
@@ -78,4 +95,10 @@ public class LimitedObjectRotator : MonoBehaviour
         // Apply the clamped rotation to the object
         transform.localEulerAngles = currentRotation;
     }
+
+    // void OnMove(InputAction.CallbackContext context)
+    // {
+    //     input = context.ReadValue<Vector2>();
+    // }
 }
+

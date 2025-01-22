@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "18a6661f-82c7-40c7-b0d0-fbf9af721f00",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "InvertVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MoveGyro",
+                    "type": "Value",
+                    "id": "6e033c9a-ad60-40d3-8e0b-b0572bad9017",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -168,6 +177,17 @@
                 },
                 {
                     "name": "",
+                    "id": "36c8aec4-7c0b-4db1-a14b-8ffb27ac1fac",
+                    "path": "<Sensor>/{Primary2DMotion}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -251,6 +271,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69737244-1e68-4360-8428-b9ee8bbbe211",
+                    "path": "<Accelerometer>/acceleration",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveGyro",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

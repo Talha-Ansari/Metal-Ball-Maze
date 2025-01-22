@@ -162,6 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.DefaultCompany.MetalBallMaze
     Standalone: com.DefaultCompany.Metal-Ball-Maze
   buildNumber:
     Standalone: 0
