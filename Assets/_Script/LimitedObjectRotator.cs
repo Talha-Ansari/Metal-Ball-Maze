@@ -74,7 +74,7 @@ public class LimitedObjectRotator : MonoBehaviour
         currentRotation.x = Mathf.Clamp(currentRotation.x - rotationChange.x, xRotationLimits.x, xRotationLimits.y); // Subtract for inverse input effect
         currentRotation.z = Mathf.Clamp(currentRotation.z + rotationChange.z, yRotationLimits.x, yRotationLimits.y);
         if (verticalOBj != null)
-            verticalOBj.localEulerAngles = new Vector3(currentRotation.x, 0, 0);
+            verticalOBj.localEulerAngles = new Vector3(currentRotation.x, 90, 0);
         // Apply the clamped rotation to the object
         transform.localEulerAngles = currentRotation;
     }
